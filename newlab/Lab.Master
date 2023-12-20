@@ -1,0 +1,146 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Lab.master.cs" Inherits="newlab.Lab" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- CSS -->
+    <script src="https://framework-gb.cdn.gob.mx/assets/scripts/main.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="https://framework-gb.cdn.gob.mx/assets/scripts/vendor/modernizr.js"></script>
+    <link href="https://framework-gb.cdn.gob.mx/assets/styles/main.css" rel="stylesheet" />
+    <link href="https://framework-gb.cdn.gob.mx/favicon.ico" rel="shortcut icon" />
+
+    <!--NO MODIFICAR-->
+    <title>Instituto Nacional de Investigaciones Forestales, Agrícolas y Pecuarias | Gobierno | gob.mx</title>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #68BB23;
+            border-radius: 10%;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <%-- BARRA2 --%>
+    <nav class="navbar navbar-inverse navbar-expand-lg navbar-static-top">
+        <div class=" container">
+            <div class=" navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <asp:HyperLink ID="HyperLinkInit" runat="server" NavigateUrl="~/Index.aspx" CssClass="navbar-brand">LNMySR</asp:HyperLink>
+                <%--                <a href="lnmysr.aspx" class="navbar-brand" style="font: small;">LNMySR</a>--%>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown-toggle"></li>
+                    <%-- PRONOSTICO --%>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perspectiva Meteorológica<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+
+                        </ul>
+                    </li>
+                    <%-- ESTACIONES --%>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Estaciones<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                                                  </ul>
+                    </li>
+                    <%-- DATOS INDIRECTOS --%>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Datos Indirectos <span class="badge bag" style="background-color: #C23213">New</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                             <li>
+                                <asp:HyperLink ID="HyperSuelos" CssClass="nav-link" runat="server" NavigateUrl="~/DatosIndirectos/MSMx.aspx">Malla Suelos México <span class="badge bag" style="background-color: #68BB23">BETA✔️</span></asp:HyperLink>
+                            </li>
+                       </ul>
+                    </li>
+             
+                    <li>
+                        <asp:HyperLink ID="HyperLink17" CssClass="nav-link" runat="server" NavigateUrl="#">Directorio</asp:HyperLink></li>
+                                 <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Eventos  <span class="badge bag" style="background-color: #C23213">New</span>  <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <asp:HyperLink ID="HyperLink3" NavigateUrl="~/Eventos/CongresoIASA.aspx" runat="server">2do Congreso <br />INTERAMERICANO<br />DE AGUA SUELO Y<br />AGROBIODIVERSIDAD <span class="dot"></span></asp:HyperLink></li>
+                            <li class="divider"></li>
+                        </ul>
+                    </li>
+
+                 
+                    <%-- OPCIONES --%>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Opciones<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           </ul>
+                    </li>
+                    <li>
+                        <asp:HyperLink ID="HyperLinkLog" runat="server"></asp:HyperLink>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form id="form1" runat="server">
+        <div>
+            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <%-- PIE PAGINA --%>
+    <footer style="text-align: center;">
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5><b>&copy; <% =""+DateTime.Today.Date.Year %> - INIFAP - Campo Experimental Pabellón - Laboratorio Nacional de Modelaje y Sensores Remotos - Algunos Derechos Reservados.</b></h5>
+                    <h5 style="color: green;">Km. 32.5 Carretera Panamericana Aguascalientes - Zacatecas<br />
+                        Pabellón de Arteaga, Aguascalientes, México<br />
+                        Apartado Postal No. 20 // C.P. 20670<br />
+                        # 01 800 088 22 22 ext 82536.</h5>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <%-- END PIE PAGINA --%>
+    <%-- MODAL --%>
+    <div class="modal fade" id="myModalEventos" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eventos</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="text-align: justify">
+                        Por el momento no se tienen programados eventos de capacitación.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
