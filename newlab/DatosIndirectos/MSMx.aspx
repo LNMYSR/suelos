@@ -48,6 +48,16 @@
                             <li>Puede vaciar su lista de selección presionando el botón "Limpiar Lista".</li>
                         </ol>
                     </li>
+                     <li class="list-group-item">
+                        3. Para obtener la imagen TIFF de una característica específica del suelo, es necesario seleccionar un estado, una variable y únicamente una profundidad. <br />
+                        En consecuencia, se sugieren los siguientes pasos:<br />
+                        <ol type="A">
+                            <li>Seleccione un estado; puede omitir la selección del municipio, ya que no tiene relevancia en este procedimiento.</li>
+                            <li>Seleccione una variable; observe que la lista de profundidades ha cambiado.</li>
+                            <li>Se sugiere limpiar la lista antes de pasar al siguiente paso. En caso de encontrar dos profundidades seleccionadas de la misma o diferente variable, el sistema seguirá la orden de la primera que encuentre al realizar la descarga.</li>
+                            <li>Seleccione únicamente una profundidad para la variable.</li>
+                        </ol>
+                    </li>
                     <%=mensaje %>
                 </ul>
             </div>

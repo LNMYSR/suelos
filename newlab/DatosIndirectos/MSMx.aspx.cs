@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
 using SistemaAlertas.Business;
+using System.Net;
 namespace newlab.DatosIndirectos
 {
     public partial class MSMx : System.Web.UI.Page
@@ -17,31 +18,7 @@ namespace newlab.DatosIndirectos
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Session["www"] = HttpContext.Current.Request.Url.AbsoluteUri;
-            //string email = (string)Session["email"];
-            //if ((string)Session["email"] != null && (string)Session["email"] != "")
-            //{
-            //    if (Usr.FiftyUser(email, 10) <= 50)
-            //    {
-            //        PanelDownload.Enabled = true;
-            //        mensaje = "<li class='list-group-item list-group-item-secondary'>¡Gracias por registrarte!</li>";
-            //        Usr.UserActivities((int)Session["identifiador"], "VISITA", 10);
-            //    }
-            //    else {
-            //        PanelDownload.Enabled = false;
-            //        mensaje = "<li class='list-group-item list-group-item-danger'>Has superado el límite de descargas (50) para este proyecto. <a href=../Directorio/Directorio.aspx'>Por favor, ponte en contacto con nosotros para obtener más información</a></li>";
-            //        Usr.UserActivities((int)Session["identifiador"], "LIMITE", 10);
-            //    }
-            //}
-            //else
-            //{
-            //    PanelDownload.Enabled = false;
-            //    mensaje = "<li class='list-group-item list-group-item-danger'>Si no has completado el proceso de registro, no podrás acceder a la descarga de información. <a href='../Acceso/Registro.aspx?p=" + 10+ "'>Registrate Aquí.</a></li> <li class='list-group-item list-group-item-success'>En caso de que ya dispongas de una cuenta. <a href='../Acceso/Login.aspx?p=" + 10 + "'>Ingresa aquí.</a></li> ";
-            //}
-
-            mensaje = "<li class='list-group-item list-group-item-secondary'>¡Gracias por registrarte!</li>";
-
-
+            mensaje = "<li class='list-group-item list-group-item-secondary'>¡Gracias por registrarte!</li><br />";
             switch (DropDownListVariable.SelectedValue) {
                 case "bulkdensity":
                     CheckBoxListBdod.Visible = true;
@@ -380,7 +357,104 @@ namespace newlab.DatosIndirectos
         }
         protected void ImageButtonTiff_Click(object sender, ImageClickEventArgs e)
         {
+            string Estado = DropDownListEstado.SelectedValue;
+            List<string> profunidades = new List<string>();
+            foreach (ListItem item in CheckBoxListBdod.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListClay.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListCec.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListCoa.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListN.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListOcd.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListPh.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListSnd.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListSlt.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListSoc.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            if (profunidades.Count() > 0)
+            {
+                string urlArchivo = string.Format("https://clima.inifap.gob.mx/suelos/cent_{0}_{1}.tif", Estado, profunidades[0]);
+                using (WebClient client = new WebClient())
+                {
+                    byte[] archivoBytes;
+                    try
+                    {
+                        archivoBytes = client.DownloadData(urlArchivo);
+                    }
+                    catch (WebException ex)
+                    {
+                        Response.Write("Error al descargar el archivo: " + ex.Message);
+                        return;
+                    }
 
+                    string nombreArchivo = string.Format("cent_{0}_{1}.tif", Estado, profunidades[0]);
+
+                    // Enviar el archivo al navegador
+                    Response.Clear();
+                    Response.ContentType = "application/octet-stream";
+                    Response.AddHeader("Content-Disposition", "attachment; filename=" + nombreArchivo);
+                    Response.BinaryWrite(archivoBytes);
+                    Response.End();
+                }
+            }
         }
     }
 }
