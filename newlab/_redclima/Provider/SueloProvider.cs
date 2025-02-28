@@ -293,6 +293,11 @@ namespace SistemaAlertas.Provider
                 {
                     entity.Soc_f = reader["soilorganiccarbon_soc100_200"] == System.DBNull.Value ? 0 : Convert.ToSingle(reader["soilorganiccarbon_soc100_200"]);
                 }
+                //socs
+                if (profundidades.Contains("soilorganiccarbonstock_socs"))
+                {
+                    entity.Soc_f = reader["soilorganiccarbonstock_socs_0_30"] == System.DBNull.Value ? 0 : Convert.ToSingle(reader["soilorganiccarbonstock_socs_0_30"]);
+                }
             }
             catch (Exception ex)
             {

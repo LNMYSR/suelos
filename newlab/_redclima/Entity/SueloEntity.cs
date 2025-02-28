@@ -77,6 +77,8 @@ namespace SistemaAlertas.Entity
         private float _Soc_d;
         private float _Soc_e;
         private float _Soc_f;
+        //socs
+        private float _SocS_a;
 
         public float Latitud { get => _Latitud; set => _Latitud = value; }
         public float Longitud { get => _Longitud; set => _Longitud = value; }
@@ -148,6 +150,8 @@ namespace SistemaAlertas.Entity
         public float Soc_e { get => _Soc_e; set => _Soc_e = value; }
         public float Soc_f { get => _Soc_f; set => _Soc_f = value; }
 
+        //SocS
+        public float SocS_a { get => _SocS_a; set => _SocS_a = value; }
 
         public SueloEntity() { }
         public SueloEntity(float Latitud, float Longitud,
@@ -160,7 +164,8 @@ namespace SistemaAlertas.Entity
             float Ph_a, float Ph_b, float Ph_c, float Ph_d, float Ph_e, float Ph_f,
             float Snd_a, float Snd_b, float Snd_c, float Snd_d, float Snd_e, float Snd_f,
             float Slt_a, float Slt_b, float Slt_c, float Slt_d, float Slt_e, float Slt_f,
-            float Soc_a, float Soc_b, float Soc_c, float Soc_d, float Soc_e, float Soc_f
+            float Soc_a, float Soc_b, float Soc_c, float Soc_d, float Soc_e, float Soc_f,
+            float SocS_a
             )
         {
             this._Latitud = Latitud;
@@ -232,6 +237,8 @@ namespace SistemaAlertas.Entity
             this._Soc_d = Soc_d;
             this._Soc_e = Soc_e;
             this._Soc_f = Soc_f;
+            //socs
+            this._SocS_a = SocS_a;
         }
     }
 }

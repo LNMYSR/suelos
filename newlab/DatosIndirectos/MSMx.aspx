@@ -76,15 +76,15 @@
                             <asp:ListItem Value="bulkdensity">bdod</asp:ListItem>
                             <asp:ListItem Value="claycontent">clay</asp:ListItem>
                             <asp:ListItem Value="cic-cec">cec</asp:ListItem>
-                            <asp:ListItem Value="coarsefragments_coa">coa</asp:ListItem>
+                            <asp:ListItem Value="coarsefragments_coa">cfvo</asp:ListItem>
                             <asp:ListItem Value="nitrogen_n">nitrogen</asp:ListItem>
                             <asp:ListItem Value="organicacarbondensity_ocd">ocd</asp:ListItem>
                             <asp:ListItem Value="phwater_ph">ph water</asp:ListItem>
                             <asp:ListItem Value="sand_snd">sand</asp:ListItem>
                             <asp:ListItem Value="silt_slt">silt</asp:ListItem>
                             <asp:ListItem Value="soilorganiccarbon_soc">soc</asp:ListItem>
+                            <asp:ListItem Value="soilorganiccarbonstock_socs">socs</asp:ListItem>
                         </asp:DropDownList>
-
                         <br />
                         <h4>Selecciona la(s) profundidad(es) de la variable:</h4>
                         <asp:CheckBoxList ID="CheckBoxListBdod" runat="server" Visible="false">
@@ -112,12 +112,12 @@
                             <asp:ListItem Text="Capacidad de Intercambio Catiónico (cec) de 100 a 200 cm" Value="cic_cec100_200" />
                         </asp:CheckBoxList>
                         <asp:CheckBoxList ID="CheckBoxListCoa" runat="server" Visible="false">
-                            <asp:ListItem Text="Coarse Fragments (coa) de 0 a 5 cm" Value="coarsefragments_coa0_5" />
-                            <asp:ListItem Text="Coarse Fragments (coa) de 5 a 15 cm" Value="coarsefragments_coa5_15" />
-                            <asp:ListItem Text="Coarse Fragments (coa) de 15 a 30 cm" Value="coarsefragments_coa15_30" />
-                            <asp:ListItem Text="Coarse Fragments (coa) de 30 a 60 cm" Value="coarsefragments_coa30_60" />
-                            <asp:ListItem Text="Coarse Fragments (coa) de 60 a 100 cm" Value="coarsefragments_coa60_100" />
-                            <asp:ListItem Text="Coarse Fragments (coa) de 100 a 200 cm" Value="coarsefragments_coa100_200" />
+                            <asp:ListItem Text="Coarse Fragments (cfvo) de 0 a 5 cm" Value="coarsefragments_coa0_5" />
+                            <asp:ListItem Text="Coarse Fragments (cfvo) de 5 a 15 cm" Value="coarsefragments_coa5_15" />
+                            <asp:ListItem Text="Coarse Fragments (cfvo) de 15 a 30 cm" Value="coarsefragments_coa15_30" />
+                            <asp:ListItem Text="Coarse Fragments (cfvo) de 30 a 60 cm" Value="coarsefragments_coa30_60" />
+                            <asp:ListItem Text="Coarse Fragments (cfvo) de 60 a 100 cm" Value="coarsefragments_coa60_100" />
+                            <asp:ListItem Text="Coarse Fragments (cfvo) de 100 a 200 cm" Value="coarsefragments_coa100_200" />
                         </asp:CheckBoxList>
                         <asp:CheckBoxList ID="CheckBoxListN" runat="server" Visible="false">
                             <asp:ListItem Text="Nitrogen (n) de 0 a 5 cm" Value="nitrogen_n0_5" />
@@ -167,6 +167,9 @@
                             <asp:ListItem Text="Soil Organic Carbon (soc) de 60 a 100 cm" Value="soilorganiccarbon_soc60_100" />
                             <asp:ListItem Text="Soil Organic Carbon (soc) de 100 a 200 cm" Value="soilorganiccarbon_soc100_200" />
                         </asp:CheckBoxList>
+                        <asp:CheckBoxList ID="CheckBoxListSocS" runat="server" Visible="false">
+                            <asp:ListItem Text="Soil Organic Carbon Stock (socs) de 0 a 30 cm" Value="soilorganiccarbonstock_socs_0_30" />
+                        </asp:CheckBoxList>
                         <asp:Button ID="ButtonLimpiar" runat="server" Text="Limpiar Lista" OnClick="ButtonLimpiar_Click" CssClass="btn bg-danger" />
                         <asp:ObjectDataSource ID="ObjectDataSourceMunicipio" runat="server" SelectMethod="Municipios" TypeName="SistemaAlertas.Business.Poligono">
                             <SelectParameters>
@@ -215,10 +218,10 @@
                 <br />
                 <div  style="padding: 5px;">
                     <div class="col-sm-12" style="text-align: justify;">
-                        <p>El "SERVICIO WEB PARA EL MANEJO DEL PRODUCTO COMPILACION DE LA BASE DE DATOS DE SUELOS SOILGRIDS PARA LA PLATAFORMA CONTINENTAL DE MÉXICO" (MSMx) se encuentra en etapa de desarrollo beta. Malla con cobertura nacional a 250 metros.</p>
+                        <p>El <b>"SERVICIO WEB PARA EL MANEJO DEL PRODUCTO COMPILACION DE LA BASE DE DATOS DE SUELOS SOILGRIDS PARA LA PLATAFORMA CONTINENTAL DE MÉXICO" (MSMx)</b> se encuentra en etapa de desarrollo beta. Malla con cobertura nacional a 250 metros.</p>
                     </div>
                     <br />
-                    <table style="height: 300px; width: 550px; border: medium; font-size: small;" align="center" border="1px">
+                    <table style="overflow-x:auto; border: medium; font-size: small;" align="center" border="1px">
                         <tbody>
                             <tr>
                                 <th>VARIABLES</th>
@@ -230,18 +233,18 @@
                             </tr>
                             <tr>
                                 <th rowspan="5" style="transform: rotate(90deg)">FISICAS</th>
-                                <th>bdod</th>
-                                <th style="text-align: justify;">Densidad aparente de la fracción de tierra fina</th>
-                                <th>cg/cm³</th>
-                                <th>100</th>
-                                <th>kg/dm³</th>
+                                <td>bdod</td>
+                                <td style="text-align: justify;">Densidad aparente de la fracción de tierra fina</td>
+                                <td>cg/cm³</td>
+                                <td>100</td>
+                                <td>kg/dm³</td>
                             </tr>
                             <tr>
-                                <th>clay</th>
-                                <th style="text-align: justify;">Proporción de partículas de arcilla (< 0.002 mm) en la fracción de tierra fina</th>
-                                <th>g/kg</th>
-                                <th>10</th>
-                                <th>g/100g (%)</th>
+                                <td>clay</td>
+                                <td style="text-align: justify;">Proporción de partículas de arcilla (< 0.002 mm) en la fracción de tierra fina</td>
+                                <td>g/kg</td>
+                                <td>10</td>
+                                <td>g/100g (%)</td>
                             </tr>
                             <tr>
                                 <td>sand</td>

@@ -79,7 +79,8 @@ namespace SistemaAlertas.Business
         private float _Soc_d;
         private float _Soc_e;
         private float _Soc_f;
-
+        //socs
+        private float _SocS_a;
 
         public float Latitud { get => _Latitud; set => _Latitud = value; }
         public float Longitud { get => _Longitud; set => _Longitud = value; }
@@ -150,6 +151,8 @@ namespace SistemaAlertas.Business
         public float Soc_d { get => _Soc_d; set => _Soc_d = value; }
         public float Soc_e { get => _Soc_e; set => _Soc_e = value; }
         public float Soc_f { get => _Soc_f; set => _Soc_f = value; }
+        //socs
+        public float SocS_a { get => _SocS_a; set => _SocS_a = value; }
 
         public Suelo() { }
         public Suelo(float Latitud, float Longitud,
@@ -162,7 +165,8 @@ namespace SistemaAlertas.Business
             float Ph_a, float Ph_b, float Ph_c, float Ph_d, float Ph_e, float Ph_f,
             float Snd_a, float Snd_b, float Snd_c, float Snd_d, float Snd_e, float Snd_f,
             float Slt_a, float Slt_b, float Slt_c, float Slt_d, float Slt_e, float Slt_f,
-            float Soc_a, float Soc_b, float Soc_c, float Soc_d, float Soc_e, float Soc_f
+            float Soc_a, float Soc_b, float Soc_c, float Soc_d, float Soc_e, float Soc_f,
+            float SocS_a
             )
         {
             this._Latitud = Latitud;
@@ -234,6 +238,8 @@ namespace SistemaAlertas.Business
             this._Soc_d = Soc_d;
             this._Soc_e = Soc_e;
             this._Soc_f = Soc_f;
+            //socs
+            this._SocS_a = SocS_a;
         }
         public static List<Suelo> DatosSuelo(string cve, string cvm, List<string> profundidades)
         {
@@ -243,7 +249,7 @@ namespace SistemaAlertas.Business
                 Suelo esTrucEstado = new Suelo(get.Latitud,get.Longitud,get.Bdod_a,get.Bdod_b,get.Bdod_c,get.Bdod_d,get.Bdod_e,get.Bdod_f,get.Clay_a,get.Clay_b,get.Clay_c,get.Clay_d,get.Clay_e,get.Clay_f, get.Cec_a, get.Cec_b, get.Cec_c, get.Cec_d, get.Cec_e, get.Cec_f,
                     get.Coa_a, get.Coa_b, get.Coa_c, get.Coa_d, get.Coa_e, get.Coa_f, get.N_a, get.N_b, get.N_c, get.N_d, get.N_e, get.N_f, get.Ocd_a, get.Ocd_b, get.Ocd_c, get.Ocd_d, get.Ocd_e, get.Ocd_f,
                     get.Ph_a, get.Ph_b, get.Ph_c, get.Ph_d, get.Ph_e, get.Ph_f, get.Snd_a, get.Snd_b, get.Snd_c, get.Snd_d, get.Snd_e, get.Snd_f, get.Slt_a, get.Slt_b, get.Slt_c, get.Slt_d, get.Slt_e, get.Slt_f,
-                    get.Soc_a, get.Soc_b, get.Soc_c, get.Soc_d, get.Soc_e, get.Soc_f);
+                    get.Soc_a, get.Soc_b, get.Soc_c, get.Soc_d, get.Soc_e, get.Soc_f, get.SocS_a);
                 ListaSuelo.Add(esTrucEstado);
             }
             return ListaSuelo;

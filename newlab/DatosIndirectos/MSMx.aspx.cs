@@ -19,7 +19,8 @@ namespace newlab.DatosIndirectos
         protected void Page_Load(object sender, EventArgs e)
         {
             mensaje = "<li class='list-group-item list-group-item-secondary'>¡Gracias por registrarte!</li><br />";
-            switch (DropDownListVariable.SelectedValue) {
+            switch (DropDownListVariable.SelectedValue)
+            {
                 case "bulkdensity":
                     CheckBoxListBdod.Visible = true;
                     CheckBoxListClay.Visible = false;
@@ -31,6 +32,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSnd.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListSlt.Visible = false;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "claycontent":
                     CheckBoxListBdod.Visible = false;
@@ -43,6 +45,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListN.Visible = false;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "cic-cec":
                     CheckBoxListBdod.Visible = false;
@@ -55,6 +58,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListCoa.Visible = false;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "coarsefragments_coa":
                     CheckBoxListBdod.Visible = false;
@@ -67,6 +71,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListCoa.Visible = true;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "nitrogen_n":
                     CheckBoxListBdod.Visible = false;
@@ -79,6 +84,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListN.Visible = true;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "organicacarbondensity_ocd":
                     CheckBoxListBdod.Visible = false;
@@ -91,6 +97,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListOcd.Visible = true;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "phwater_ph":
                     CheckBoxListBdod.Visible = false;
@@ -103,6 +110,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListPh.Visible = true;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "sand_snd":
                     CheckBoxListBdod.Visible = false;
@@ -115,6 +123,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListSnd.Visible = true;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "silt_slt":
                     CheckBoxListBdod.Visible = false;
@@ -127,6 +136,7 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSoc.Visible = false;
                     CheckBoxListSnd.Visible = false;
                     CheckBoxListSlt.Visible = true;
+                    CheckBoxListSocS.Visible = false;
                     break;
                 case "soilorganiccarbon_soc":
                     CheckBoxListBdod.Visible = false;
@@ -139,6 +149,20 @@ namespace newlab.DatosIndirectos
                     CheckBoxListSnd.Visible = false;
                     CheckBoxListSlt.Visible = false;
                     CheckBoxListSoc.Visible = true;
+                    CheckBoxListSocS.Visible = false;
+                    break;
+                case "soilorganiccarbonstock_socs":
+                    CheckBoxListBdod.Visible = false;
+                    CheckBoxListClay.Visible = false;
+                    CheckBoxListCec.Visible = false;
+                    CheckBoxListCoa.Visible = false;
+                    CheckBoxListN.Visible = false;
+                    CheckBoxListOcd.Visible = false;
+                    CheckBoxListPh.Visible = false;
+                    CheckBoxListSnd.Visible = false;
+                    CheckBoxListSlt.Visible = false;
+                    CheckBoxListSoc.Visible = false;
+                    CheckBoxListSocS.Visible = true;
                     break;
 
                 default:
@@ -215,6 +239,13 @@ namespace newlab.DatosIndirectos
                 }
             }
             foreach (ListItem item in CheckBoxListSoc.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListSocS.Items)
             {
                 if (item.Selected)
                 {
@@ -310,6 +341,9 @@ namespace newlab.DatosIndirectos
                 if (CheckBoxListSoc.Items[4].Selected) { columnbind.Append("," + row.Soc_e); }
                 if (CheckBoxListSoc.Items[5].Selected) { columnbind.Append("," + row.Soc_f); }
 
+                if (CheckBoxListSocS.Items[0].Selected) { columnbind.Append("," + row.SocS_a); }
+
+
                 columnbind.Append("\r\n");
             }
             Response.Output.Write(columnbind.ToString());
@@ -354,6 +388,7 @@ namespace newlab.DatosIndirectos
             CheckBoxListSnd.ClearSelection();
             CheckBoxListSlt.ClearSelection();
             CheckBoxListSoc.ClearSelection();
+            CheckBoxListSocS.ClearSelection();
         }
         protected void ImageButtonTiff_Click(object sender, ImageClickEventArgs e)
         {
@@ -423,6 +458,13 @@ namespace newlab.DatosIndirectos
                 }
             }
             foreach (ListItem item in CheckBoxListSoc.Items)
+            {
+                if (item.Selected)
+                {
+                    profunidades.Add(item.Value);
+                }
+            }
+            foreach (ListItem item in CheckBoxListSocS.Items)
             {
                 if (item.Selected)
                 {
